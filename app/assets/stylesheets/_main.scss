@@ -1,0 +1,71 @@
+select{
+	display:block!important
+}
+
+/*******************************
+*           Fonts Size
+*******************************/
+@for $dec from 0 through 4 {
+	@for $num from 1 through 9 {
+		.f-#{$dec}#{$num} {
+			font-size:#{ ( $dec ) + ( $num / 10 ) }em !important;
+		}
+		@if( $num == 9 ) {
+			.f-#{ $dec + 1 } {
+				font-size: #{ $dec + 1 }em !important;
+			}
+		}
+	}
+}
+
+
+$directions: (
+	"t": top,
+	"r": right,
+	"b": bottom,
+	"l": left
+);
+$styles: (
+	"m": margin,
+	"p": padding
+);
+
+
+/*******************************
+
+*******************************/
+@each $l_style, $n_style in $styles {
+	
+	@for $thickness from 0 through 5
+	{
+		@for $mid from 0 through 1
+		{
+			$size: #{$thickness};
+			$name: #{$thickness};
+			@if ( $mid == 1 ) {
+				$size: #{ ( $thickness + .5 ) };
+				$name: #{$thickness}5;
+			};
+
+			.#{$l_style}-#{$name} {
+				#{$n_style}: #{$size}em !important;
+			}
+
+			@each $l_dir, $n_dir in $directions
+			{
+				.#{$l_style}-#{$l_dir}-#{$name} {
+					#{$n_style}-#{$n_dir}: #{$size}em !important;
+				}
+			}
+
+			.#{$l_style}-tb-#{$name} {
+				#{$n_style}-top: #{$size}em !important;
+				#{$n_style}-bottom: #{$size}em !important;
+			}
+			.#{$l_style}-lr-#{$name} {
+				#{$n_style}-left: #{$size}em !important;
+				#{$n_style}-right: #{$size}em !important;
+			}
+		}
+	}
+}

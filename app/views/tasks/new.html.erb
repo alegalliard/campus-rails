@@ -1,0 +1,18 @@
+<section class="row">
+	<div class="container">		
+		<div class="col s12 m8 l6 offset-s2 offset-l3">
+			<%= form_for(@task) do |f| %>
+				<div class="card">
+					<div class="card-content">
+						<h1 class="f-2 m-t-0">Criar nova tarefa</h1>
+						<%= f.label :name %>
+						<%= f.text_field :name %>
+					</div>
+					<div class="card-action">
+						<%= f.submit 'Criar', :class => 'btn blue' %>
+					</div>
+				</div>
+			<% end %>
+		</div>
+	</div>
+</section>
